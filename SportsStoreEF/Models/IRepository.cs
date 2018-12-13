@@ -20,5 +20,9 @@ namespace SportsStoreEF.Models
         void AddProduct(Product product);
 
         void UpdateProduct(Product product);
+
+        void UpdateAll(Product[] products);
+
+        void Delete(Product product);
     }
 }
