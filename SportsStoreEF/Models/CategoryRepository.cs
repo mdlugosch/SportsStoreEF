@@ -40,9 +40,9 @@ namespace SportsStoreEF.Models
             //query.Name = category.Name;
             //query.Description = category.Description; 
 
-            (context.Categories.Find(category.Id)).Name=category.Name;
-            (context.Categories.Find(category.Id)).Description = category.Description;
-            //context.Categories.Update(category);
+            //(context.Categories.Find(category.Id)).Name=category.Name;
+            //(context.Categories.Find(category.Id)).Description = category.Description;
+            context.Categories.Update(category);
             context.SaveChanges();
         }
     }
