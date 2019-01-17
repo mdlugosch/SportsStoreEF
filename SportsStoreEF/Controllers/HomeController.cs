@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SportsStoreEF.Models;
+using SportsStoreEF.Models.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,9 @@ namespace SportsStoreEF.Controllers
             catRepository = catRepo;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(QueryOptions options)
         {
-            //System.Console.Clear();
-            return View(repository.Products);
+            return View(repository.GetProducts(options));
         }
 
         public IActionResult UpdateProduct(long key)
