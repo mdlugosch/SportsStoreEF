@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportsStoreEF.Models.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace SportsStoreEF.Models
     public interface ICategoryRepository
     {
         IEnumerable<Category> Categories { get; }
+
+        PagedList<Category> GetCategories(QueryOptions options);
 
         void AddCategory(Category category);
         void UpdateCategory(Category category);
@@ -20,6 +23,11 @@ namespace SportsStoreEF.Models
         public CategoryRepository(DataContext ctx) => context = ctx;
 
         public IEnumerable<Category> Categories => context.Categories;
+
+        public PagedList<Category> GetCategories(QueryOptions options)
+        {
+            return new PagedList<Category>(context.Categories, options);
+        }
 
         public void AddCategory(Category category)
         {

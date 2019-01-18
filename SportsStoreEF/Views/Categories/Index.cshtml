@@ -2,6 +2,15 @@
 
 <h3 class="p-2 bg-primary text-white text-center">Categories</h3>
 
+<div class="text-center">
+    <partial name="Pages" model="Model" />
+    @{
+        ViewBag.searches = new string[] { "Name", "Description" };
+        ViewBag.sorts = new string[] { "Name", "Description" };
+    }
+    <partial name="PageOptions" model="Model" />
+</div>
+
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-1 font-weight-bold">Id</div>
@@ -11,18 +20,20 @@
     </div>
     @if (ViewBag.EditId == null)
     {
-        <form asp-action="AddCategory" methode="post">
-            @Html.Partial("CategoryEditor", new Category())
-        </form>
+    <form asp-action="AddCategory" methode="post">
+        <partial name="CategoryEditor" model="new Category()" />
+        @*@Html.Partial("CategoryEditor", new Category())*@
+    </form>
     }
     @foreach (Category c in Model)
     {
         @if(c.Id == ViewBag.EditId)
         {
-            <form asp-action="UpdateCategory" method="post">
-                <input type="hidden" name="Id" vale="@c.Id" />
-                @Html.Partial("CategoryEditor", c)
-            </form>
+    <form asp-action="UpdateCategory" method="post">
+        <input type="hidden" name="Id" vale="@c.Id" />
+        <partial name="CategoryEditor" model="c" />
+        @*@Html.Partial("CategoryEditor", c)*@
+    </form>
         } else
         {
             <div class="row p-2">
