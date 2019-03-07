@@ -28,8 +28,8 @@ namespace SportsStoreEF.Models.Pages
                 }
             }
 
-            Stopwatch sw = Stopwatch.StartNew();
-            Console.Clear();
+            //Stopwatch sw = Stopwatch.StartNew();
+            //Console.Clear();
 
             // maximale Seitenanzahl = Anzahl Datensätze / Anzahl Datensätze pro Seite
             TotalPages = query.Count() / PageSize;
@@ -37,8 +37,6 @@ namespace SportsStoreEF.Models.Pages
             // nehme davon die näschten maximal pro Seite erlaubten Datensätze.
             if(CurrentPage>=1)
             AddRange(query.Skip((CurrentPage - 1) * PageSize).Take(PageSize));
-
-            Console.WriteLine($"Query Time: {sw.ElapsedMilliseconds} ms");
         }
 
         public int CurrentPage { get; set; }
