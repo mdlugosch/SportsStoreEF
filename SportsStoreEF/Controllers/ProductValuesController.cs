@@ -19,5 +19,29 @@ namespace SportsStoreEF.Controllers
         {
             return repository.GetProduct(id) ?? NotFound();
         }
+
+        [HttpGet]
+        public object GetProduct(int skip, int take)
+        {
+            return repository.GetProducts(skip, take);
+        }
+
+        [HttpPost]
+        public long StoreProduct([FromBody] Product product)
+        {
+            return repository.StoreProduct(product);
+        }
+
+        [HttpPut]
+        public void UpdateProduct([FromBody] Product product)
+        {
+            repository.UpdateProduct(product);
+        }
+
+        [HttpDelete("{id}")]
+        public void DeleteProduct(long id)
+        {
+            repository.DeleteProduct(id);
+        }
     }
 }
